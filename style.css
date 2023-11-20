@@ -1,0 +1,31 @@
+.r-touren {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  background-color: whitesmoke;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.r-tour {
+  text-align: left;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+img.bild {
+  /* sonst bekommt die leaflet panes/Kacheln auch einen Rand */
+  /* width: auto;  30% */
+  height: 150px; /* passt besser für querformat */
+  margin: 5px; /* obsolete */
+  border: 2px solid rgb(84, 102, 202); /* Rahmen um das Bild */
+}
+
+details {
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+
+summary {
+  cursor: pointer;
+}

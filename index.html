@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css"
+    />
+    <link href="./style.css" rel="stylesheet" />
+    <script type="text/javascript" src="./main.js"></script>
+    <script>
+      // csv input file; created by exiftool
+      var input =
+        "SourceFile,latitude,longitude\n./imgs/p1050714.jpg,55.1304027777778,8.68534444444444\n./imgs/p1050722.jpg,55.2916805555556,8.6749\n./imgs/p1060169.jpg,49.7989333333333,12.30045\n./imgs/p1050746.jpg,56.0051194444444,8.12754444444444"; // no empty line at the end
+    </script>
+    <title>Show image position on map</title>
+  </head>
+  <body onload="init(input)">
+    <!-- ... leaflet.js von externer Quelle einbinden-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.3.1/gpx.min.js"></script>
+    <!-- section -->
+    <section class="r-touren">
+      <article class="r-tour">
+        <details open>
+          <summary>See my pictures</summary>
+          <p>Please click on the picture to see the geoloation</p>
+          <!-- see querySelectorAll class bild in .js file -->
+          <img class="bild" src="./imgs/p1050714.jpg" alt="x" />
+          <img class="bild" src="./imgs/p1050722.jpg" alt="y" />
+          <img class="bild" src="./imgs/p1050746.jpg" alt="z" />
+        </details>
+        <details>
+          <summary>Description</summary>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Repudiandae, aspernatur blanditiis praesentium nisi modi autem iste
+            at dolore illo earum.
+          </p>
+
+          <p><span>&nbsp;&nbsp;</span></p>
+          <!-- erzeugt eine "Leerzeile", damit die Farbfläche weiter nach unten geht -->
+        </details>
+      </article>
+      <article class="r-tour">
+        <div id="mapid3" style="height: 520px; width: 100%; top: 10px"></div>
+        <script>
+          var conf = {
+            mapid: "mapid3",
+            lat: 49.726603,
+            lng: 12.168632,
+            zoom: 11,
+          }; // geoPos ..
+          setKarte(conf);
+        </script>
+      </article>
+    </section>
+  </body>
+</html>
