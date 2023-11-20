@@ -1,8 +1,10 @@
 /* global vars */
 let arrayImg = 0; // array of the images
 let arraySrc = []; // array of image src
-let allJSON;
+let allJSON; // csv to json var
+var map = 0; // map var
 
+// init some global values
 function init(csvInput) {
   let allImg =
     document.querySelectorAll(
@@ -19,12 +21,13 @@ function init(csvInput) {
   return;
 }
 
+// save the img src in WpGeoInfo class
 function saveSrc(elem) {
   let s = elem.getAttribute("src"); // source of img
   let a = elem.getAttribute("alt");
 
   let result = allJSON.find(({ SourceFile }) => SourceFile === s);
-  console.log(result);
+  //console.log(result);
   if (result) {
     // != undefined
     let x = result["latitude"];
@@ -39,23 +42,19 @@ function saveSrc(elem) {
 // add click event function
 function addClick(elem) {
   elem.addEventListener("click", setGeoLoc);
-  console.log("ac");
+  //console.log("ac");
 }
 
+// set the geo marker on the map
 function setGeoLoc(e) {
-  console.log("set geo");
+  //console.log("set geo");
   let clickIndex = arrayImg.indexOf(e.currentTarget);
   let wp = arraySrc[clickIndex];
   wp.setmarker();
   return;
 }
 
-/*
-
-// geo location function
-
-var map = 0; /* global */
-
+// waypoint geo info class
 class WpGeoInfo {
   // #private class method(s)
 
@@ -91,24 +90,18 @@ class WpGeoInfo {
     this.#name = name;
     this.#lat = lat;
     this.#lon = lon;
-    console.trace("constr.WpGeoInfo");
+    //console.trace("constr.WpGeoInfo");
   } // constr.
 } // end class
 
-function setKarte(conf) {
+// init map with configuration data
+function setMap(conf) {
   map = L.map(conf.mapid); // var map is global
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: "© OpenStreetMap",
   }).addTo(map);
   map.setView([conf.lat, conf.lng], conf.zoom);
-  return;
-}
-
-function setmarker(name) {
-  var marker = L.marker([51.5, -0.09]).addTo(map);
-  marker.bindPopup("<b>" + name + "</b><br>I am a popup.");
-
   return;
 }
 
@@ -130,6 +123,5 @@ function csvJSON(csv) {
     result.push(obj);
   } //for
 
-  return result; //JavaScript object; dann klappt result.find
-  //return JSON.stringify(result); //JSON
+  return result;
 }

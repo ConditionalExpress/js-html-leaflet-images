@@ -10,7 +10,9 @@
     <link href="./style.css" rel="stylesheet" />
     <script type="text/javascript" src="./main.js"></script>
     <script>
-      // csv input file; created by exiftool
+      // csv input file; created by exiftool see Phil Harvey
+      // exiftool -gpslatitude -gpslongitude -T -n -csv -ext jpg ./myfolder
+      // -T := data in columns; -n := geo co-ordinates in decimal derees
       var input =
         "SourceFile,latitude,longitude\n./imgs/p1050714.jpg,55.1304027777778,8.68534444444444\n./imgs/p1050722.jpg,55.2916805555556,8.6749\n./imgs/p1060169.jpg,49.7989333333333,12.30045\n./imgs/p1050746.jpg,56.0051194444444,8.12754444444444"; // no empty line at the end
     </script>
@@ -38,21 +40,18 @@
             Repudiandae, aspernatur blanditiis praesentium nisi modi autem iste
             at dolore illo earum.
           </p>
-
-          <p><span>&nbsp;&nbsp;</span></p>
-          <!-- erzeugt eine "Leerzeile", damit die Farbfläche weiter nach unten geht -->
         </details>
       </article>
       <article class="r-tour">
-        <div id="mapid3" style="height: 520px; width: 100%; top: 10px"></div>
+        <div id="mapid" style="height: 520px; width: 100%; top: 10px"></div>
         <script>
           var conf = {
-            mapid: "mapid3",
-            lat: 49.726603,
-            lng: 12.168632,
+            mapid: "mapid",
+            lat: 54.895659,
+            lng: 8.7499516,
             zoom: 11,
-          }; // geoPos ..
-          setKarte(conf);
+          }; // geoPos DK border (between Niebüll/D and Tonder/DK)
+          setMap(conf);
         </script>
       </article>
     </section>

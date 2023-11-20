@@ -14,8 +14,7 @@
 }
 
 img.bild {
-  /* sonst bekommt die leaflet panes/Kacheln auch einen Rand */
-  /* width: auto;  30% */
+  /* I used the german 'bild' instead of 'img' */
   height: 150px; /* passt besser für querformat */
   margin: 5px; /* obsolete */
   border: 2px solid rgb(84, 102, 202); /* Rahmen um das Bild */
