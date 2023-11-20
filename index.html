@@ -45,13 +45,16 @@
       <article class="r-tour">
         <div id="mapid" style="height: 520px; width: 100%; top: 10px"></div>
         <script>
+          /* configuration of the map */
           var conf = {
-            mapid: "mapid",
+            mapid: "mapid", // name like 'map' or 'map1'
             lat: 54.895659,
             lng: 8.7499516,
             zoom: 11,
           }; // geoPos DK border (between Niebüll/D and Tonder/DK)
-          setMap(conf);
+          var mymap = 0; // map var is only local valid
+          mymap = setMap(conf);
+          WpGeoMap.setMyMap(mymap); // but we set this var in a static class method; no instance is needed :-)
         </script>
       </article>
     </section>

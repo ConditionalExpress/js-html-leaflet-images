@@ -2,7 +2,6 @@
 let arrayImg = 0; // array of the images
 let arraySrc = []; // array of image src
 let allJSON; // csv to json var
-var map = 0; // map var
 
 // init some global values
 function init(csvInput) {
@@ -54,12 +53,26 @@ function setGeoLoc(e) {
   return;
 }
 
+// waypoint geo map class; getter and setter for map; so we do not use glabal var map ;-)
+class WpGeoMap {
+  // static member(s)
+  static map = 0;
+  // static member method(s)
+  static setMyMap(m) {
+    this.map = m;
+  }
+  static getMyMap() {
+    return this.map;
+  }
+} // end class
+
 // waypoint geo info class
 class WpGeoInfo {
   // #private class method(s)
 
   // public class method(s)
   setmarker() {
+    let map = WpGeoMap.getMyMap(); // get map var
     let linkStr =
       "<a href=" + this.#name + ' target="_blank" >link zum Bild</a>';
     var marker = L.marker([this.#lat, this.#lon]).addTo(map);
@@ -96,13 +109,16 @@ class WpGeoInfo {
 
 // init map with configuration data
 function setMap(conf) {
-  map = L.map(conf.mapid); // var map is global
+  var map = L.map(conf.mapid);
+  // see tutorials on: https://leafletjs.com
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "© OpenStreetMap",
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19 /* optional */,
   }).addTo(map);
   map.setView([conf.lat, conf.lng], conf.zoom);
-  return;
+  L.control.scale().addTo(map); // nice to have: control km/meter, miles scale in left upper corner
+  return map; // returns map
 }
 
 // see https://gist.github.com/iwek/7154578
